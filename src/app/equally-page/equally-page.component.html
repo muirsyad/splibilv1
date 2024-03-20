@@ -1,0 +1,14 @@
+<app-title-shadow [title]="'Equally'"></app-title-shadow>
+<app-title-shadow [title]="'No Pax'"></app-title-shadow>
+<div class="flex justify-center">
+    <input [formControl]="pax" type="number" class="border-2 border-black w-40 text-center h-24 text-6xl">
+</div>
+<app-title-shadow [title]="'Amount'"></app-title-shadow>
+<div class="flex justify-center">
+    <input (change)="saverange()" [formControl]="amount" type="number" class="border-2 border-black w-40 text-center h-24 text-6xl">
+    
+</div>
+<app-title-shadow [title]="'Need To Paid:'"></app-title-shadow>
+<app-title-shadow title="RM{{bal}}"></app-title-shadow>
+
+
