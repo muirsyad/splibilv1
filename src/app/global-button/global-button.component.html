@@ -1,1 +1,10 @@
-<button class="border border-black p-3 shadow-drop min-w-24"><a href={{link}}>{{text}} </a></button>
+<!-- <button *ngIf="hvlink == true;  else elseBlock" class="border border-black p-3 shadow-drop min-w-24"><a  href={{link}}>{{text}} </a></button>
+<span #elseBlock>ss</span> -->
+
+<button *ngIf="hvlink == true; else elseBlock" class="border border-black p-3 shadow-drop min-w-24"><a  href={{link}}>{{text}} </a></button>
+<ng-template #elseBlock> <span>123</span> </ng-template>
+
+
+
+
+
