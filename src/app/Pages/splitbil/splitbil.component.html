@@ -1,0 +1,33 @@
+<div>
+    <app-title-stroke [title]="'RM'+total"></app-title-stroke>
+    <app-title-stroke class="text-center" [title]="'Pay For ?'"></app-title-stroke>
+    <ul class="grid grid-cols-2 text-center">
+        <li class="mb-5" *ngFor="let item of itemList; index as i">
+        <app-global-button (click)="openmodal(i)" [hvlink]="false" [text]="item.item"></app-global-button>
+        </li>
+    </ul>
+    <app-backdrop [back]="backdrop" (click)="toggelback()"></app-backdrop>
+    <!-- <div *ngFor="let pax of paxlist; index as i" [ngClass]="modal[i] ? 'flex justify-center':'hidden'">
+        <div class="bg-white shadow-lg absolute top-52 justify-self-center">
+            <h1>{{pax}}</h1>
+            <h1>123</h1>
+            
+        </div>
+    </div> -->
+    <div *ngFor="let item of itemList; index as i" [ngClass]="modal[i] ? 'flex justify-center':'hidden'">
+        <div class="bg-white shadow-lg absolute top-52 p-5 rounded-lg border">
+            <h1>Item: {{item.item}} x{{item.quantity}}</h1>
+            <h1>Total: {{item.price}}</h1>
+            <ul>
+                <li *ngFor="let pax of paxlist; index as i">
+                
+                <input type="checkbox">
+                {{pax}}
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+    
+    
+</div>
