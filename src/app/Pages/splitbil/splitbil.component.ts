@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TitleStrokeComponent } from '../../Components/title-stroke/title-stroke.component';
 import { OnInit } from '@angular/core';
 import { Item } from '../../model/item';
-import { NgFor,NgClass } from '@angular/common';
+import { NgFor,NgClass,NgIf } from '@angular/common';
 import { GlobalButtonComponent } from '../../global-button/global-button.component';
 import { BackdropComponent } from '../../Components/backdrop/backdrop.component';
 import { elementAt } from 'rxjs';
@@ -12,7 +12,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-splitbil',
   standalone: true,
-  imports: [TitleStrokeComponent,NgFor,GlobalButtonComponent,BackdropComponent,NgClass],
+  imports: [TitleStrokeComponent,NgFor,GlobalButtonComponent,BackdropComponent,NgClass,NgIf],
   templateUrl: './splitbil.component.html',
   styleUrl: './splitbil.component.css'
 })
@@ -21,10 +21,13 @@ export class SplitbilComponent implements OnInit {
   total:string=""
   itemList!:Item[]
   paxlist!:string[]
+  paxpaidlist:number[] = []
   paxitem:number[][]=[]
   backdrop:boolean = false
   modal:boolean[]=[]
   npaid:number[]=[]
+
+  paxxpaid:number[]=[]
   ngOnInit() {
     var x = localStorage.getItem("item")
     var y = localStorage.getItem("pax")
@@ -34,6 +37,7 @@ export class SplitbilComponent implements OnInit {
     this.paxlist =  JSON.parse(y!)
     var itemlit:Item[] = this.itemList
     var sum:number=0
+    var itemlit:Item[] = []
     itemlit.forEach((element)=>{
       console.log(element)
       sum+=element.price
@@ -100,29 +104,50 @@ export class SplitbilComponent implements OnInit {
   calc(){
     this.itemList.forEach((element,j)=>{
       if(element.paid != undefined){
-        console.log(element.paid)
-        console.log(element.paid.length)
+        
         var nedpaid:number = element.price/element.paid.length
         console.log("Need to paid RM"+ nedpaid)
         this.npaid.push(nedpaid)
         this.paxlist.forEach((el,ind)=>{
-          if(element.paid!.includes(ind) && j < 1){
-            this.paxitem.push([j])
-            console.log(j)
+          if(element.paid!.includes(ind)){
+            console.log(this.paxlist[ind])
+            console.log(this.npaid[j])
+           
+              // this.paxpaidlist = [this.npaid[j]]
+              if(j<1){
+                this.paxpaidlist.push(this.npaid[j])
+              }else{
+                this.paxpaidlist[ind] += this.npaid[j]
+              }
+              
+           
+             
+          
+           
+           
+            
           }else{
-            // this.paxitem[j].push(j)
-            console.log(j)
-            console.log(ind)
+            console.log(this.paxlist[ind])
+            console.log(0)
+            if(j < 1){
+              // this.paxpaidlist.push(0)
+              this.paxpaidlist.push(0)
+            }else{
+              this.paxpaidlist[ind] += 0
+            }
+           
 
             
           }
-          console.log(this.paxitem)
+          
           // console.log(element.paid!.includes(ind))
-        })
+        }
+        )
       }else{
         this.npaid.push(0)
       }
     })
     console.log(this.npaid)
+    console.log(this.paxpaidlist)
   }
 }

@@ -21,6 +21,29 @@
     </ul>
     <app-global-button (click)="calc()" [hvlink]="false" [text]="'Calculate'"></app-global-button>
     <app-backdrop [back]="backdrop" (click)="toggelback()"></app-backdrop>
+
+    <ul class=" text-center mt-10">
+        <li class="mb-5 bg-white shadow-drop border text-start py-3 px-2" *ngFor="let pax of paxlist; index as i">
+
+            <h1 class="text-start">{{pax}}</h1>
+            <!-- <div *ngIf="condition">Content to render when condition is true.</div> -->
+            <h1  *ngFor="let item of itemList; index as k" >
+            <h1 *ngIf="itemList[k].paid?.includes(i)">{{item.item}} *** RM{{npaid[k]}}</h1>
+            </h1>
+            <div class="flex justify-between">
+                <div class="flex">
+                    <!-- <h1 class="ms-3">Qty: {{item.quantity}}</h1> -->
+                    <!-- <h1 class="ms-3">Rate: {{item.price}}</h1> -->
+                </div>
+                <!-- <div class="me-3">Total:{{item.price}}</div> -->
+
+            </div>
+            <div class="flex overflow-auto scrollbar-hide">
+                <!-- <h1 class="border me-5 rounded px-3 " *ngFor="let pax of paxlist; index as j"> <input (click)="chk2(i,j)" type="checkbox"> {{pax}}</h1> -->
+                <!-- <h1 class="border me-5 rounded px-3 " *ngFor="let pax of paxlist; index as i"> {{pax}}</h1> -->
+            </div>
+        </li>
+    </ul>
     <!-- <div *ngFor="let pax of paxlist; index as i" [ngClass]="modal[i] ? 'flex justify-center':'hidden'">
         <div class="bg-white shadow-lg absolute top-52 justify-self-center">
             <h1>{{pax}}</h1>
