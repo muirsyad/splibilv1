@@ -1,11 +1,25 @@
 <div>
     <app-title-stroke [title]="'RM'+total"></app-title-stroke>
     <app-title-stroke class="text-center" [title]="'Pay For ?'"></app-title-stroke>
-    <ul class="grid grid-cols-2 text-center">
-        <li class="mb-5" *ngFor="let item of itemList; index as i">
-        <app-global-button (click)="openmodal(i)" [hvlink]="false" [text]="item.item"></app-global-button>
+    <ul class=" text-center">
+        <li class="mb-5 bg-white shadow-drop border text-start py-3 px-2" *ngFor="let item of itemList; index as i">
+
+            <h1 class="text-start">{{item.item}}</h1>
+            <div class="flex justify-between">
+                <div class="flex">
+                    <h1 class="ms-3">Qty: {{item.quantity}}</h1>
+                    <!-- <h1 class="ms-3">Rate: {{item.price}}</h1> -->
+                </div>
+                <div class="me-3">Total:{{item.price}}</div>
+
+            </div>
+            <div class="flex overflow-auto scrollbar-hide">
+                <h1 class="border me-5 rounded px-3 " *ngFor="let pax of paxlist; index as j"> <input (click)="chk2(i,j)" type="checkbox"> {{pax}}</h1>
+                <!-- <h1 class="border me-5 rounded px-3 " *ngFor="let pax of paxlist; index as i"> {{pax}}</h1> -->
+            </div>
         </li>
     </ul>
+    <app-global-button (click)="calc()" [hvlink]="false" [text]="'Calculate'"></app-global-button>
     <app-backdrop [back]="backdrop" (click)="toggelback()"></app-backdrop>
     <!-- <div *ngFor="let pax of paxlist; index as i" [ngClass]="modal[i] ? 'flex justify-center':'hidden'">
         <div class="bg-white shadow-lg absolute top-52 justify-self-center">
@@ -14,20 +28,20 @@
             
         </div>
     </div> -->
-    <div *ngFor="let item of itemList; index as i" [ngClass]="modal[i] ? 'flex justify-center':'hidden'">
+    <!-- <div *ngFor="let item of itemList; index as i" [ngClass]="modal[i] ? 'flex justify-center':'hidden'">
         <div class="bg-white shadow-lg absolute top-52 p-5 rounded-lg border">
             <h1>Item: {{item.item}} x{{item.quantity}}</h1>
             <h1>Total: {{item.price}}</h1>
             <ul>
-                <li *ngFor="let pax of paxlist; index as i">
-                
-                <input type="checkbox">
-                {{pax}}
+                <li *ngFor="let pax of paxlist; index as j">
+
+                    <input (click)="chk(i,j)" type="checkbox">
+                    {{pax}}
                 </li>
             </ul>
-            
+
         </div>
-    </div>
-    
-    
+    </div> -->
+
+
 </div>
