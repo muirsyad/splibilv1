@@ -7,6 +7,7 @@ import { GlobalButtonComponent } from '../../global-button/global-button.compone
 import { BackdropComponent } from '../../Components/backdrop/backdrop.component';
 import { elementAt } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import {Router} from "@angular/router"
 
 
 @Component({
@@ -17,6 +18,9 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './splitbil.component.css'
 })
 export class SplitbilComponent implements OnInit {
+
+  constructor(private router: Router) { }
+
   
   total:string=""
   itemList!:Item[]
@@ -26,6 +30,7 @@ export class SplitbilComponent implements OnInit {
   backdrop:boolean = false
   modal:boolean[]=[]
   npaid:number[]=[]
+  togglecal:boolean = false
 
   paxxpaid:number[]=[]
   ngOnInit() {
@@ -51,6 +56,13 @@ export class SplitbilComponent implements OnInit {
     
     
     console.log(this.modal)
+  }
+
+  reset(){
+    localStorage.removeItem("pax");
+    localStorage.removeItem("item");
+
+    this.router.navigate(['/split_1'])
   }
   toggelback(){
     this.backdrop= !this.backdrop
@@ -102,6 +114,7 @@ export class SplitbilComponent implements OnInit {
     console.log(this.itemList[itemid])
   }
   calc(){
+    this.togglecal = !this.togglecal
     this.itemList.forEach((element,j)=>{
       if(element.paid != undefined){
         

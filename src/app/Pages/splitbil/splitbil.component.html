@@ -19,10 +19,11 @@
             </div>
         </li>
     </ul>
-    <app-global-button (click)="calc()" [hvlink]="false" [text]="'Calculate'"></app-global-button>
+    <app-global-button [ngClass]="togglecal ? 'hidden' : 'block'"  (click)="calc()" [hvlink]="false" [text]="'Calculate'"></app-global-button>
     <app-backdrop [back]="backdrop" (click)="toggelback()"></app-backdrop>
 
-    <ul class=" text-center mt-10">
+    <app-global-button [ngClass]="togglecal ? 'block' : 'hidden'"  (click)="reset()" [hvlink]="false" [text]="'Reset'"></app-global-button>
+    <ul [ngClass]="togglecal ? 'block' : 'hidden'" class=" text-center mt-10 ">
         <li class="mb-5 bg-white shadow-drop border text-start py-3 px-2" *ngFor="let pax of paxlist; index as i">
 
             <h1 class="text-start">{{pax}}</h1>

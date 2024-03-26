@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component,Injectable  } from '@angular/core';
 import { TitleStrokeComponent } from '../Components/title-stroke/title-stroke.component';
 import { GlobalButtonComponent } from '../global-button/global-button.component';
 import { BigInputComponent } from '../Components/big-input/big-input.component';
 import { NgClass,NgFor } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {Item} from '../model/item'; 
+import { OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-individual-static',
@@ -29,6 +31,19 @@ export class IndividualStaticComponent {
   itemlist:Item[]=[
     // {item:"test",quantity:2,price:5}
   ]
+
+  ngOnInit() {
+    console.log("init")
+    var y = localStorage.getItem("pax")
+    var x = localStorage.getItem("item")
+    console.log(y)
+    if(y != undefined){
+      this.listPax =  JSON.parse(y!)
+    }
+    if(x != undefined){
+      this.itemlist = JSON.parse(x!)
+    }
+  }
   togglemodal(id:number){
     this.modalopen[id] = !this.modalopen[id]
     this.backdrop = !this.backdrop
